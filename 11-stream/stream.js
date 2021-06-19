@@ -2,11 +2,11 @@ const fs = require("fs");
 const data = [];
 
 const readStream = fs.createReadStream("11-stream/file.txt", {
-  //highWaterMark: 8, //한번에 얼마나 읽어올지 정할 수 있다. 기본은 64 kbytes
+  highWaterMark: 8, //한번에 얼마나 읽어올지 정할 수 있다. 기본은 64 kbytes
   encoding: "utf-8", // 그냥 기본적인 버퍼가 아닌 인코딩해서
 });
-
-readStream.on("data", (chunk) => {
+//이러면 한번만 실행해서 처음 받아온 데이터만 출력한다.
+readStream.once("data", (chunk) => {
   //console.log(chunk);
   data.push(chunk); //덩어리들을 배열에다가 저장했다
   console.count("data");
