@@ -23,8 +23,40 @@ const duplicatedDir = path.join(workingDir, "duplicated");
 //3.. 폴더안에 있는 모든 파일을 돌면서 확장자에 맞춰서 파일들을 구분한다
 fs.promises.readdir(workingDir).then(processFiles).catch(console.error);
 
-const processFiles = (files) => {
+function processFiles(files) {
   files.forEach((file) => {
-    console.log(file);
+    if (isVideoFile(file)) {
+      move(file, videoDir);
+    } else if (isCapturedFile(file)) {
+      move(file, captureDir);
+    } else if (isDuplicatedFile(files, file)) {
+      move(file, duplicatedDir);
+    }
   });
-};
+}
+
+function isVideoFile(file) {
+  const regExp = /(mov|mp4)&/gm;
+  const match = file.match(regExp);
+  return !!match;
+}
+function isCapturedFile(file) {
+  const regExp = /(png|aee)&/gm;
+  const match = file.match(regExp);
+  return !!match;
+}
+function isDuplicatedFile(files, file) {
+  if (!file.startsWith("IMG_") || file.startsWith("IMG_E")) {
+    return false;
+  }
+  const edited = `IMG_E${file.split("_")[1]}`;
+  const found = files.find((f) => f.includes(edited));
+  return !!found;
+}
+
+function move(file, targetDir) {
+  console.info(`move ${file} to ${path.basename(targetDir)}`);
+  const oldPath = path.join(workingDir, file);
+  const newPath = path.join(targetDir, file);
+  fs.promises.rename(oldPath, newPath).catch(console.error);
+}
