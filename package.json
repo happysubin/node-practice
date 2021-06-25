@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node challenge/example.js"
+    "dev": "nodemon --exec babel-node 13-node-server/server.js"
   },
   "repository": {
     "type": "git",
