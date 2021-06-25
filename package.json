@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node 13-node-server/template.js"
+    "dev": "nodemon --exec babel-node 13-node-server/json.js"
   },
   "repository": {
     "type": "git",
