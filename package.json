@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node 13-node-server/server.js"
+    "dev": "nodemon --exec babel-node 13-node-server/template.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "@babel/preset-env": "^7.14.5"
   },
   "dependencies": {
+    "ejs": "^3.1.6",
     "nodemon": "^2.0.7"
   }
 }
