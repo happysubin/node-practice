@@ -1,9 +1,18 @@
 import express from "express";
 import fs from "fs";
 import Router from "./router";
+import cors from "cors";
+
 const app = express();
 
-app.use(express.json()); //이 미들웨어를 통해 req.body 사용가능!!!
+app.use(express.json()); //이 미들웨어를 통해 json req.body 사용가능!!! res api ->body
+app.use(express.static); //html 과 같은 static file 사용 가능
+app.use(express.urlencoded({ extended: true })); //이걸 통해 HTML FORM 정보를 req.body 로사용가능
+app.use(
+  cors({
+    origin: ["http://localhost:3000/"],
+  })
+); //header을 자동으로
 
 app.post("/", (req, res) => {
   console.log(req.body);
