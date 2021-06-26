@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node 13-node-server/json.js"
+    "dev": "nodemon --exec babel-node express/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "nodemon": "^2.0.7"
   }
 }
